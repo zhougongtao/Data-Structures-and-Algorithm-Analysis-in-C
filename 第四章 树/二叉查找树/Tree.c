@@ -118,16 +118,6 @@ SearchTree Delete(ElementType X, SearchTree T)
     return T;
 }
 
-void PrintFirst(SearchTree T)
-{
-    if (T != NULL)
-    {
-        printf(" %d ", T->Element);
-        PrintFirst(T->Left);
-        PrintFirst(T->Right);
-    }
-}
-
 void ToElement(Position P, SearchTree T)
 {
     if (T == NULL)
@@ -143,6 +133,30 @@ void ToElement(Position P, SearchTree T)
     }
 }
 
+static void dot(SearchTree T)
+{
+    if(T == NULL)
+        return;
+    if(T->Left!=NULL){
+        printf("    %d->%d;\n", T->Element, T->Left->Element);
+        dot(T->Left);
+    }
+    if(T->Right!= NULL){
+        printf("    %d->%d;\n", T->Element, T->Right->Element);
+        dot(T->Right);
+    }
+    
+}
+
+void PrintDot(SearchTree T)
+{
+    printf("\n");
+    printf(".dot Coding:\n");
+    printf("digraph SearchTree {\n");
+    dot(T);
+    printf("}\n\n");
+}
+
 int main()
 {
     SearchTree T = NULL;
@@ -152,7 +166,7 @@ int main()
     T = Insert(1, T);
     T = Insert(5, T);
     T = Insert(4, T);
-    PrintFirst(T);
+    PrintDot(T);
 
     printf("Max:");
     ToElement(FindMax(T), T);
@@ -160,11 +174,8 @@ int main()
     ToElement(FindMin(T), T);
 
     Delete(1, T);
-    PrintFirst(T);
-    printf("\n");
-
     Delete(3, T);
-    PrintFirst(T);
+    PrintDot(T);
     printf("\n");
 
     return 0;

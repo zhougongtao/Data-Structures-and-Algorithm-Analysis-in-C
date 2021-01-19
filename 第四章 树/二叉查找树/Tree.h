@@ -12,7 +12,6 @@ Position FindMin(SearchTree T);                 //找到最小值 递归
 Position FindMax(SearchTree T);                 //找到最大值 循环
 SearchTree Insert(ElementType X, SearchTree T); //插入值
 SearchTree Delete(ElementType X, SearchTree T); //删除值
-void PrintFirst(SearchTree T);                  //先序遍历
 void ToElement(Position P, SearchTree S);       //地址转数字
-
+void PrintDot(SearchTree T);                    //输出dot文件代码
 #endif
